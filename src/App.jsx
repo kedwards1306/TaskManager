@@ -6,15 +6,19 @@ import Trash from './pages/Trash';
 import TaskDetails from './pages/TaskDetails';
 import './styles.css';
 import Tasks from './pages/Tasks';
+import Dashboard from './pages/Dashboard';
+import { useSelector } from 'react-redux';
+import SideBar from './components/SideBar';
+
 
 function Layout() {
-  const user = "";
-  const location = useLocation
+  const {user} = useSelector(state => state.auth);
+  const location = useLocation();
 
   return user ? (
-    <div className={`layout ${window.innerWidth >=768 ? 'layout-md' : ''}` }>
-      <div className={`sidebar ${window.innerWidth >=768 ? 'sidebar-md' : ''}`}>
-  {/* <Sidebar/> */}
+    <div className={'layout' }>
+      <div className={'sidebar'}>
+        <SideBar />
       </div>
       {/* <MobileSidebar/> */}
 
@@ -40,7 +44,8 @@ function App() {
     <main className='main '>
   <Routes>
       <Route element={<Layout />}>
-          <Route path="/" element={<NavLink to="/tasks" />} />
+          <Route path="/" element={<NavLink to="/dashboard" />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/tasks" element={<Tasks />} />
           <Route path="/completed/:status" element={<Tasks />} />
           <Route path="/in-progess/:status" element={<Tasks />} />

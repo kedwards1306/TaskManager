@@ -5,9 +5,10 @@ import { ThemeProvider } from '@mui/material/styles';
 import  theme  from '../theme.jsx';
 import './App.css'; // Your custom CSS for layout and styles
 import { Card, CardHeader, CardContent, TextField, Typography, Button } from '@mui/material';
+import { useSelector } from 'react-redux';
 
 const Login = () => {
-    const user = "";
+    const {user} = useSelector(state => state.auth);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
 
@@ -16,7 +17,7 @@ const Login = () => {
 }
 
     useEffect(() => {
-        if (user) navigate("/tasks");
+        if (user) navigate("/dashboard");
     }, [user, navigate]);
 
     return (

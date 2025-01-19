@@ -5,22 +5,17 @@
     flex-direction: column;
   }
 
-  .layout-md {
-    flex-direction: row;
-  }
+
 
   .sidebar {
     width: 20%;
     height: 100vh;
-    background-color: white;
+    background-color: grey;
     position: sticky;
     top: 0;
-    display: none;
-  }
-
-  .sidebar-md {
     display: block;
   }
+
 
   .content {
     flex: 1;
@@ -42,3 +37,24 @@
   }
 
 
+
+/* SideBar */
+.sidebar-container {
+  width: 250px; /* Adjust width as needed */
+  background-color: #f4f4f4;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+}
+
+.sidebar-item {
+  text-decoration: none;
+  color: inherit;
+  border:2px solid blue;
+}
+
+.sidebar-item.active {
+  background-color: #e0e0e0; /* Active background */
+  font-weight: bold;
+}
