@@ -1,4 +1,5 @@
 
+import { useContext } from "react";
 import Login from './pages/Login'
 import { Routes, Route, NavLink, Outlet, useLocation } from 'react-router-dom';
 import Users from './pages/Users';
@@ -9,15 +10,20 @@ import Tasks from './pages/Tasks';
 import Dashboard from './pages/Dashboard';
 import { useSelector } from 'react-redux';
 import SideBar from './components/SideBar';
+import { AuthContext } from './auth/Authentication';
 
 
 function Layout() {
-  const {user} = useSelector(state => state.auth);
+  // const {user} = useSelector(state => state.auth);
+  const { user } = useContext(AuthContext);
+  // const { user } = { user: "Alex" };
   const location = useLocation();
 
+  console.log("user:");
+  console.log(user);
   return user ? (
-    <div className={'layout' }>
-      <div className={'sidebar'}>
+    <div className="layout" >
+      <div className="sidebar">
         <SideBar />
       </div>
       {/* <MobileSidebar/> */}
