@@ -9,6 +9,14 @@
     position: fixed;
   }
 
+/* Responsive design */
+@media  (min-width: 768px){
+.sidebar-container {
+
+}
+
+}
+
   .sidebar-item {
     text-decoration: none;
     color: black;
@@ -19,3 +27,41 @@
     background-color: #e0e0e0; /* Active background */
     font-weight: bold;
   }
+
+
+  .navbar-left {
+display: flex;
+justify-content: space-between;
+position: sticky;
+
+  }
+.navbar-content {
+display: flex;
+align-items: center;
+gap: 4;
+
+}
+.navbar-search {
+  width: 200px; /* Set desired width */
+  padding: 9px; /* Padding for inside the input */
+  border: 1px solid #ccc; /* Border styling */
+  border-radius: 14px; /* Rounded corners */
+  outline: none; /* Remove default outline on focus */
+  transition: width 0.3s ease;
+  background-color: lightgray;
+  color: black;
+}
+
+#menuButton {
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+}
+
+
+.MuiMenu-paper {
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}

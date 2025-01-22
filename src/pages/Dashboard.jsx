@@ -5,7 +5,6 @@ import "./App.css";
 const Dashboard = () => {
   return (
 <div>
-      <SideBar />
 Dashboard
     </div>
   )

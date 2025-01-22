@@ -61,27 +61,3 @@ color: #1976df;
 #root {
 width: 100%;
 }
-
-
-
-/* SideBar */
-.sidebar-container {
-    width: 250px; /* Adjust width as needed */
-    background-color: #f4f4f4;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-  }
-
-  .sidebar-item {
-    text-decoration: none;
-    color: inherit;
-    border:2px solid blue;
-  }
-
-  .sidebar-item.active {
-    background-color: #e0e0e0; /* Active background */
-    font-weight: bold;
-  }
-
