@@ -11,6 +11,7 @@ import Dashboard from './pages/Dashboard';
 import { useSelector } from 'react-redux';
 import SideBar from './components/SideBar';
 import { AuthContext } from './auth/Authentication';
+import NavBar from "./components/NavBar";
 
 
 function Layout() {
@@ -22,21 +23,18 @@ function Layout() {
   console.log("user:");
   console.log(user);
   return user ? (
-    <div className="layout" >
-      <div className="sidebar">
+    <div className="layout">
+    <div className="sidebar">
         <SideBar />
-      </div>
-      {/* <MobileSidebar/> */}
-
-      <div className="content">
-        {/* <NavBar/> */}
-
-      </div>
-      <div className="padding padding-2xl">
-        <Outlet/>
-
-
-</div>
+    </div>
+    <div className="main-content">
+        <div className="navbar">
+            <NavBar />
+        </div>
+        <div className="content">
+            <Outlet />
+        </div>
+    </div>
 </div>
   ): (
       <NavLink to = "/login" state = {{ from: location }} replace/>

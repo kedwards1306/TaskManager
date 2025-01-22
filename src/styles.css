@@ -1,37 +1,56 @@
 .layout {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row; /* Change to row to place sidebar and content side by side */
+}
 
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: grey;
+  position: sticky;
+  top: 0;
+  display: block;
+}
 
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* Content and Navbar stacked vertically */
+  overflow-y: auto;
+}
 
-  .sidebar {
-    width: 20%;
-    height: 100vh;
-    background-color: grey;
-    position: sticky;
-    top: 0;
-    display: block;
-  }
+.navbar {
+  width: 100%;
+  height: 60px; /* Adjust height as needed */
+  background-color: #ffffff; /* Change to desired Navbar color */
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for distinction */
+  display: flex;
+  align-items: center;
+  padding: 0 16px; /* Add padding for Navbar content */
+color: black;
 
+}
 
-  .content {
-    flex: 1;
-    overflow-y: auto;
-  }
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px; /* Maintain padding for content */
+  color: black;
+}
 
-  .main {
-    width: 100%;
-    min-height: 100vh;
-    background-color: #f3f4f6;
-  }
-  .padding {
-    padding: 16px;
-  }
+.main {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f3f4f6;
+}
 
-  .padding-2xl {
-    padding-left: 40px;
-    padding-right: 40px;
-  }
+.padding {
+  padding: 16px;
+}
+
+.padding-2xl {
+  padding-left: 40px;
+  padding-right: 40px;
+}
