@@ -1,67 +1,81 @@
-
-/* SideBar */
+/* Sidebar */
 .sidebar-container {
-    width: 250px; /* Adjust width as needed */
-    background-color: grey;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-  }
-
-/* Responsive design */
-@media  (min-width: 768px){
-.sidebar-container {
-
+  width: 250px;
+  background-color: grey;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transform: translateX(-100%); /* Hidden by default */
+  transition: transform 0.3s ease;
+  z-index: 1000;
 }
 
+.sidebar.open {
+  transform: translateX(0); /* Show sidebar */
 }
 
-  .sidebar-item {
-    text-decoration: none;
-    color: black;
-
-  }
-
-  .sidebar-item.active {
-    background-color: #e0e0e0; /* Active background */
-    font-weight: bold;
-  }
-
-
-  .navbar-left {
-display: flex;
-justify-content: space-between;
-position: sticky;
-
-  }
-.navbar-content {
-display: flex;
-align-items: center;
-gap: 4;
-
+.sidebar.closed {
+  transform: translateX(-100%); /* Hide sidebar */
 }
-.navbar-search {
-  width: 200px; /* Set desired width */
-  padding: 9px; /* Padding for inside the input */
-  border: 1px solid #ccc; /* Border styling */
-  border-radius: 14px; /* Rounded corners */
-  outline: none; /* Remove default outline on focus */
-  transition: width 0.3s ease;
-  background-color: lightgray;
+
+.sidebar-item {
+  text-decoration: none;
   color: black;
+  padding: 12px 16px;
 }
 
-#menuButton {
-  display: inline-block;
-  align-items: center;
-  justify-content: center;
+.sidebar-item.active {
+  background-color: #e0e0e0;
   font-weight: bold;
-  color: white;
 }
 
+/* Navbar */
+.navbar-left {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 900;
+}
 
-.MuiMenu-paper {
+.navbar-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-search {
+  width: 200px;
+  padding: 8px;
+  border: 1px solid #ccc;
+background-color: grey;
   border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.sidebar-toggle-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .sidebar.open {
+    transform: translateX(0); /* Show on toggle */
+  }
 }

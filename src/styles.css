@@ -9,10 +9,27 @@
   width: 250px;
   height: 100vh;
   background-color: grey;
-  position: sticky;
-  top: 0;
-  display: block;
 }
+
+.sidebar.open {
+  transform: translateX(0); /* Show sidebar */
+}
+
+.sidebar.closed {
+  transform: translateX(-100%); /* Hide sidebar */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%); /* Default hidden in mobile */
+  }
+
+  .sidebar.open {
+    transform: translateX(0); /* Show on toggle */
+  }
+}
+
 
 .main-content {
   flex: 1;

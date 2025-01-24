@@ -70,8 +70,8 @@ button:focus-visible {
 
 
 /* SideBar */
-.sidebar-container {
-  width: 250px; /* Adjust width as needed */
+/* .sidebar-container {
+  width: 250px;
   background-color: #f4f4f4;
   height: 100vh;
   display: flex;
@@ -82,10 +82,9 @@ button:focus-visible {
 .sidebar-item {
   text-decoration: none;
   color: inherit;
-  border:2px solid blue;
 }
 
 .sidebar-item.active {
-  background-color: #e0e0e0; /* Active background */
+  background-color: #e0e0e0;
   font-weight: bold;
-}
+} */
