@@ -1,5 +1,5 @@
 
-import { useContext } from "react";
+import { useContext, useRef, useState,useEffect } from "react";
 import Login from './pages/Login'
 import { Routes, Route, NavLink, Outlet, useLocation } from 'react-router-dom';
 import Users from './pages/Users';
@@ -8,38 +8,78 @@ import TaskDetails from './pages/TaskDetails';
 import './styles.css';
 import Tasks from './pages/Tasks';
 import Dashboard from './pages/Dashboard';
-import { useSelector } from 'react-redux';
 import SideBar from './components/SideBar';
 import { AuthContext } from './auth/Authentication';
 import NavBar from "./components/NavBar";
+import { Drawer } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
 
 
 function Layout() {
+  const navigate = useNavigate();
   // const {user} = useSelector(state => state.auth);
   const { user } = useContext(AuthContext);
   // const { user } = { user: "Alex" };
   const location = useLocation();
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const toggleDrawer = (open) => () => {
+    setIsDrawerOpen(open);
+  };
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login", { state: { from: location }, replace: true });
+    }
+  });
 
   console.log("user:");
   console.log(user);
   return user ? (
     <div className="layout">
-    <div className="sidebar">
+      {/* Sidebar */}
+      <Drawer
+        anchor="left"
+        open={isDrawerOpen}
+        onClose={toggleDrawer(false)}
+        variant="temporary" // Makes the Drawer slide in from the side
+        sx={{
+          "& .MuiDrawer-paper": {
+            width: 250,
+            backgroundColor: "grey",
+          },
+        }}
+      >
         <SideBar />
-    </div>
-    <div className="main-content">
+      </Drawer>
+      <div className="main-content">
+        <MobileSidebar />
         <div className="navbar">
-            <NavBar />
+          <NavBar toggleDrawer={toggleDrawer} isDrawerOpen={isDrawerOpen} />
         </div>
         <div className="content">
-            <Outlet />
+          <Outlet />
         </div>
+      </div>
     </div>
-</div>
-  ): (
-      <NavLink to = "/login" state = {{ from: location }} replace/>
-)
+  ) : null;
 }
+const MobileSidebar = () => {
+  const { isSidebarOpen,toggleSidebar } = useContext(AuthContext);
+  const mobileMenuRef = useRef(null);
+
+
+  const closeSidebar = () => {
+    toggleSidebar(false);
+  };
+  return <>
+
+
+  </>
+
+}
+
+
 
 function App() {
 
@@ -48,7 +88,7 @@ function App() {
     <main className='main '>
   <Routes>
       <Route element={<Layout />}>
-          <Route path="/" element={<NavLink to="/dashboard" />} />
+          <Route index path="/" element={<NavLink to="/dashboard" />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/tasks" element={<Tasks />} />
           <Route path="/completed/:status" element={<Tasks />} />

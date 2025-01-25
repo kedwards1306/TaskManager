@@ -1,29 +1,37 @@
-import React, { useContext } from 'react'
-import { MdOutlineSearch } from 'react-icons/md';
-import { AuthContext } from '../auth/Authentication';
+import React from "react";
+import { MdOutlineSearch } from "react-icons/md";
+import UserAvatar from "./UserAvatar";
 import "./App.css";
-import UserAvatar from './UserAvatar';
+import NotificationAlert from "./NotificationAlert";
 
-const NavBar = () => {
-    const user = useContext(AuthContext);
+const NavBar = ({ toggleDrawer, isDrawerOpen }) => {
   return (
-      <div className="navbar-left">
-          <div className="navbar-content">
-              <MdOutlineSearch />
-              <input
-                    type="text"
-                    placeholder="Search..."
-                    className="navbar-search"
-                />
-
+    <div className="navbar-left">
+      {/* Sidebar Toggle Button */}
+      <button
+        className="sidebar-toggle-button"
+        onClick={toggleDrawer(!isDrawerOpen)}
+      >
+        ☰
+      </button>
+      {/* Search Bar */}
+      <div className="navbar-content">
+        <MdOutlineSearch size={24} />
+        <input
+          type="text"
+          placeholder="Search..."
+          className="navbar-search"
+        />
           </div>
 
+
+      {/* User Avatar */}
           <div>
-<UserAvatar />
-          </div>
-
+          <NotificationAlert />
+        <UserAvatar />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;
