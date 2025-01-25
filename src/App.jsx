@@ -1,5 +1,5 @@
 
-import { useContext, useRef, useState } from "react";
+import { useContext, useRef, useState,useEffect } from "react";
 import Login from './pages/Login'
 import { Routes, Route, NavLink, Outlet, useLocation } from 'react-router-dom';
 import Users from './pages/Users';
@@ -12,9 +12,12 @@ import SideBar from './components/SideBar';
 import { AuthContext } from './auth/Authentication';
 import NavBar from "./components/NavBar";
 import { Drawer } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
 
 
 function Layout() {
+  const navigate = useNavigate();
   // const {user} = useSelector(state => state.auth);
   const { user } = useContext(AuthContext);
   // const { user } = { user: "Alex" };
@@ -24,12 +27,18 @@ function Layout() {
     setIsDrawerOpen(open);
   };
 
+  useEffect(() => {
+    if (!user) {
+      navigate("/login", { state: { from: location }, replace: true });
+    }
+  });
+
   console.log("user:");
   console.log(user);
   return user ? (
     <div className="layout">
-    {/* Sidebar */}
-    <Drawer
+      {/* Sidebar */}
+      <Drawer
         anchor="left"
         open={isDrawerOpen}
         onClose={toggleDrawer(false)}
@@ -46,16 +55,14 @@ function Layout() {
       <div className="main-content">
         <MobileSidebar />
         <div className="navbar">
-            <NavBar  toggleDrawer={toggleDrawer} isDrawerOpen={isDrawerOpen}/>
+          <NavBar toggleDrawer={toggleDrawer} isDrawerOpen={isDrawerOpen} />
         </div>
         <div className="content">
-            <Outlet />
+          <Outlet />
         </div>
+      </div>
     </div>
-</div>
-  ): (
-      <NavLink to = "/login" state = {{ from: location }} replace/>
-)
+  ) : null;
 }
 const MobileSidebar = () => {
   const { isSidebarOpen,toggleSidebar } = useContext(AuthContext);
@@ -81,7 +88,7 @@ function App() {
     <main className='main '>
   <Routes>
       <Route element={<Layout />}>
-          <Route path="/" element={<NavLink to="/dashboard" />} />
+          <Route index path="/" element={<NavLink to="/dashboard" />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/tasks" element={<Tasks />} />
           <Route path="/completed/:status" element={<Tasks />} />

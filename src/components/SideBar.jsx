@@ -19,7 +19,7 @@ const linkedData = [
 ];
 
 const SideBar = () => {
-  const { user, isSidebarOpen, toggleSidebar } = useContext(AuthContext);
+  const { user, toggleSidebar } = useContext(AuthContext);
 
   // Limit links for non-admin users
   const sidebarLink = user?.isAdmin ? linkedData : linkedData.slice(0, 6);
@@ -38,7 +38,7 @@ const SideBar = () => {
           className={({ isActive }) => (isActive ? "sidebar-item active" : "sidebar-item")}
           onClick={closeSidebar}
         >
-          <ListItem button>
+          <ListItem button >
             <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText primary={item.label} />
           </ListItem>
