@@ -7,22 +7,18 @@ import { Button } from '@mui/material';
 import "./App.css";
 //import Link from 'react-router-dom';
 
-const data = [
-[]
+const initialNotifications = [
+  {
+    message: "New task has been assign to you", icon: <BiSolidMessage/>
+  },
 
 ];
-const ICONS = {
-  alert: (
-<FaRegBell className="regbell"/>
-  ),
-  message: (
-<BiSolidMessage className=""/>
-  )
 
-};
 
 const NotificationAlert = () => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [notifications, setNotifications] = useState(initialNotifications);
+
 
   const handlePopoverOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -31,27 +27,32 @@ const NotificationAlert = () => {
   const handlePopoverClose = () => {
     setAnchorEl(null);
   };
+  const handleMarkAllRead = () => {
+    setNotifications([]); // Clear all notifications
+  };
 
   const open = Boolean(anchorEl);
   const readHandler = () => { };
 
   const callsToAction = [
-    { name: "Cancel", href: "#", icon: "" },
+    { name: "Cancel", href: "#", icon: "", onClick: handlePopoverClose },
     {
       name: "Mark all read", href: "#", icon: "",
-      onClick: () => readHandler("all", ""),
+      onClick: handleMarkAllRead,
 
     },
   ];
   return (
-<div className="notification-alert">
+    <div className="notification-alert">
       <Button
         className="notification-button"
         onClick={handlePopoverOpen}
         aria-describedby={open ? "notification-popover" : undefined}
       >
         <IoIosNotificationsOutline size={24} />
-        {data.length > 0 && <span className="notification-badge">{data.length}</span>}
+        {notifications.length > 0 && (
+          <span className="notification-badge">{notifications.length}</span>
+        )}
       </Button>
 
       <Popover
@@ -69,19 +70,39 @@ const NotificationAlert = () => {
         }}
       >
         <div className="popover-content">
-          {data.length > 0 ? (
-            data.map((notification, index) => (
+          {/* Notification Messages */}
+          {notifications.length > 0 ? (
+            notifications.map((notification, index) => (
               <div key={index} className="notification-item">
-                {notification.message}
+                {notification.icon && (
+                  <span className="notification-icon">{notification.icon}</span>
+                )}
+                <span className="notification-message">
+                  {notification.message}
+                </span>
               </div>
             ))
           ) : (
             <div className="notification-empty">No new notifications</div>
           )}
+
+          {/* Calls to Action */}
+          <div className="calls-to-action">
+            {callsToAction.map((action, index) => (
+              <Button
+                key={index}
+                className="cta-button"
+                onClick={action.onClick}
+                href={action.href}
+              >
+                {action.name}
+              </Button>
+            ))}
+          </div>
         </div>
       </Popover>
     </div>
-  )
-}
+  );
+};
 
 export default NotificationAlert
