@@ -71,7 +71,7 @@ background-color: grey;
 .user-section {
     display: flex;
     align-items: center;
-    gap: 15px; /* Adjust the spacing between avatar and notification */
+    gap: 10px; /* Adjust the spacing between avatar and notification */
 
 }
 
@@ -115,8 +115,8 @@ color:indigo;
 /* Notification Badge */
 .notification-badge {
   position: absolute;
-  top: -5px;
-  right: -5px;
+  top: 1px;
+  right: 5px;
   background-color: red;
   color: white;
   font-size: 10px;
