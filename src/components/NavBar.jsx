@@ -25,8 +25,9 @@ const NavBar = ({ toggleDrawer, isDrawerOpen }) => {
           </div>
 
 
-      {/* User Avatar */}
-          <div>
+          {/* User Avatar */}
+
+          <div className="user-section">
           <NotificationAlert />
         <UserAvatar />
       </div>
