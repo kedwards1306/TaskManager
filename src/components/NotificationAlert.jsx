@@ -11,9 +11,7 @@ const initialNotifications = [
   {
     message: "New task has been assign to you", icon: <BiSolidMessage/>
   },
-
 ];
-
 
 const NotificationAlert = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -39,7 +37,6 @@ const NotificationAlert = () => {
     {
       name: "Mark all read", href: "#", icon: "",
       onClick: handleMarkAllRead,
-
     },
   ];
   return (
