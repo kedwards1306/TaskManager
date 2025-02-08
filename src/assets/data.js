@@ -109,4 +109,111 @@ export const summary = {
         createdAt: "2024-05-25",
       },
     ],
-  };
+
+};
+export const tasks = [
+  {
+      id: "1",
+      title: "Finish React Project",
+      date: "2025-01-28",
+      priority: "high",
+      stage: "todo",
+      activities: [
+          "Reviewed API endpoints",
+          "Updated component structure"
+      ],
+      team: [
+          {
+              id: "U1",
+              name: "Alice Johnson",
+              role: "Frontend Developer",
+              email: "alice.johnson@example.com"
+          },
+          {
+              id: "U2",
+              name: "Bob Smith",
+              role: "Backend Developer",
+              email: "bob.smith@example.com"
+          }
+      ],
+      isTrashed: false,
+      subTask: [
+          {
+              title: "Implement Authentication",
+              date: "2025-01-29",
+              tag: "development",
+              id: "1.1"
+          },
+          {
+              title: "Set up Redux",
+              date: "2025-01-30",
+              tag: "development",
+              id: "1.2"
+          }
+      ],
+      comments: [],
+      createdAt: "2024-12-01",
+      updatedAt: "2025-01-28"
+  },
+  {
+      id: "2",
+      title: "Prepare Presentation Slides",
+      date: "2025-01-27",
+      priority: "medium",
+      stage: "in-progress",
+      activities: [
+          "Gathered data",
+          "Designed 4 slides"
+      ],
+      team: [
+          {
+              id: "U3",
+              name: "Charlie Brown",
+              role: "Designer",
+              email: "charlie.brown@example.com"
+          },
+          {
+              id: "U4",
+              name: "Dana White",
+              role: "Data Analyst",
+              email: "dana.white@example.com"
+          }
+      ],
+      isTrashed: false,
+      subTask: [
+          {
+              title: "Add charts to slides",
+              date: "2025-01-28",
+              tag: "design",
+              id: "2.1"
+          }
+      ],
+      comments: [],
+      createdAt: "2024-12-10",
+      updatedAt: "2025-01-27"
+  },
+  {
+      id: "3",
+      title: "Submit Expense Report",
+      date: "2025-01-26",
+      priority: "low",
+      stage: "completed",
+      activities: [
+          "Collected receipts",
+          "Filled out form"
+      ],
+      team: [
+          {
+              id: "U5",
+              name: "Evan Lee",
+              role: "Finance Manager",
+              email: "evan.lee@example.com"
+          }
+      ],
+      isTrashed: false,
+      subTask: [],
+      comments: [],
+      createdAt: "2024-11-15",
+      updatedAt: "2025-01-26"
+  }
+];

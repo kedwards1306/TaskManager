@@ -9,6 +9,7 @@ import "./App.css";
 import { Box, Grid2, Card, CardContent, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Avatar, Chip  } from '@mui/material';
 import { summary } from "../assets/data";
 import moment from "moment";
+import { getInitial } from '../utils';
 
 const totals = summary.tasks;
 const stats = [
@@ -63,14 +64,14 @@ const Dashboard = () => {
               justifyContent: "space-between",
               p: 2,
               height: "140px",
-              width: "130px",
+              width: "140px",
 
             }}
           >
             <Box sx={{ flexGrow: 1 }}>
               <Typography variant="body2">{label}</Typography>
               <Typography variant="h5" fontWeight="bold">{total}</Typography>
-              <Typography variant="caption">110 last month</Typography>
+              <Typography variant="caption"style={{color: "grey"}}>110 last month</Typography>
             </Box>
             <Box sx={{ fontSize: "2rem" }}>{icon}</Box>
           </Card>

@@ -31,3 +31,21 @@ export function getInitial(fullName) {
     return initialsString;
 
 }
+
+export const TASK_TYPE = {
+  todo: "blue",
+  "in progress": "yellow",
+  completed: "green",
+};
+export const PRIORITYSTYLES = {
+  high: "red",
+  medium: "yellow",
+  low: "green",
+}
+
+export const BGS = {
+  blue: "#3498db",
+  yellow: "#f1c40f",
+  green: "#2ecc71",
+  red: "#e74c3c",
+}
