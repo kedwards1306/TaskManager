@@ -95,7 +95,7 @@ const TaskTable = ({ tasks }) => {
       alignItems: 'center', 
       justifyContent: 'center',
       borderRadius: '180%',  // Circular border
-      padding: '4px 10px',  // Adjust padding for the circle size
+      padding: '4px 5px',  // Adjust padding for the circle size
       fontSize: '0.875rem',  // Adjust font size as needed
     }}
   />
@@ -109,15 +109,15 @@ const TaskTable = ({ tasks }) => {
 
                 <TableCell>
                   <Box sx={{ display: "flex", gap: 2 }}>
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 0.5, color: "gray" }}>
+                    <Box sx={{ display: "flex", alignItems: "center", color: "gray" }}>
                       <BiMessageAltDetail size={18} />
                       <Typography variant="body2">{task.activities?.length}</Typography>
                     </Box>
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 0.5, color: "gray" }}>
+                    <Box sx={{ display: "flex", alignItems: "center", color: "gray" }}>
                       <MdAttachFile size={18} />
                       <Typography variant="body2">{task.assets?.length}</Typography>
                     </Box>
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 0.5, color: "gray" }}>
+                    <Box sx={{ display: "flex", alignItems: "center", color: "gray" }}>
                       <FaList size={16} />
                       <Typography variant="body2">0/{task.subTasks?.length}</Typography>
                     </Box>
@@ -134,9 +134,10 @@ const TaskTable = ({ tasks }) => {
                           width: 32,
                           height: 32,
                           fontSize: "small",
+                          
                         }}
                       >
-                        <UserInfo user={member} />
+                        <UserInfo user={member} style={{gap:"16px"}} />
                       </Avatar>
                     ))}
                   </AvatarGroup>

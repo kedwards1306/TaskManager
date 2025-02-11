@@ -66,11 +66,12 @@ const Tasks = () => {
 
         <Tabs tabs={TABS} selected={selected} setSelected={setSelected}>
           {!status && (
-            <div style={{ display: "flex", justifyContent: "space-between", gap: "16px", padding: "16px 0" }}>
-              <TaskTitle label="To Do" style={{ color: TASK_TYPE.todo }} />
-              <TaskTitle label="In Progress" style={{ color: TASK_TYPE["in progress"] }} />
-              <TaskTitle label="Completed" style={{ color: TASK_TYPE.completed }} />
-            </div>
+            <><div style={{ display: "flex", justifyContent: "space-between", gap: "16px", padding: "16px 0" }}>
+                <TaskTitle label="To Do" style={{ color: TASK_TYPE.todo }} />
+                <TaskTitle label="In Progress" style={{ color: TASK_TYPE["in progress"] }} />
+                <TaskTitle label="Completed" style={{ color: TASK_TYPE.completed }} />
+
+              </div><BoardView tasks={tasks} /></>
           )}
           {selected !== 1 ? (
             <BoardView tasks={tasks} />
