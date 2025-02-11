@@ -8,11 +8,11 @@ import {
   TableContainer,
   Paper,
   Typography,
-  IconButton,
   AvatarGroup,
   Avatar,
   Box,
   Button,
+  Chip,
 } from "@mui/material";
 import {
   MdAttachFile,
@@ -35,7 +35,7 @@ const ICONS = {
 const TaskTable = ({ tasks }) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [selected, setSelected] = useState(null);
-
+  console.log("Tasks:", tasks);  
   const deleteClicks = (id) => {
     setSelected(id);
     setOpenDialog(true);
@@ -44,6 +44,7 @@ const TaskTable = ({ tasks }) => {
   const deleteHandler = () => {
     // Handle delete logic here
   };
+
 
   return (
     <>
@@ -61,7 +62,7 @@ const TaskTable = ({ tasks }) => {
           </TableHead>
 
           <TableBody>
-            {tasks.map((task) => (
+          {tasks.map((task) => (
               <TableRow key={task._id} hover>
                 <TableCell>
                   <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
@@ -78,15 +79,27 @@ const TaskTable = ({ tasks }) => {
                 </TableCell>
 
                 <TableCell>
-                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                    <Typography variant="body2" sx={{ color: PRIORITYSTYLES[task.priority] }}>
-                      {ICONS[task.priority]}
-                    </Typography>
-                    <Typography variant="body2" sx={{ textTransform: "capitalize" }}>
-                      {task.priority} Priority
-                    </Typography>
-                  </Box>
-                </TableCell>
+  <Chip
+    label={task.priority}
+    icon={
+      task.priority === "high" 
+        ? <MdKeyboardDoubleArrowUp />
+        : task.priority === "medium" 
+        ? <MdKeyboardArrowUp />
+        : <MdKeyboardArrowDown />
+    }
+    color={task.priority === "high" ? "error" : task.priority === "medium" ? "warning" : "success"}
+    variant="outlined"
+    sx={{
+      display: 'flex', 
+      alignItems: 'center', 
+      justifyContent: 'center',
+      borderRadius: '180%',  // Circular border
+      padding: '4px 10px',  // Adjust padding for the circle size
+      fontSize: '0.875rem',  // Adjust font size as needed
+    }}
+  />
+</TableCell>
 
                 <TableCell>
                   <Typography variant="body2" color="textSecondary">

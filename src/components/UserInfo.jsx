@@ -40,7 +40,7 @@ const UserInfo = ({ user }) => {
       >
         <Box sx={{ display: "flex", alignItems: "center", p: 2, gap: 2 }}>
           <Avatar sx={{ bgcolor: "blue", width: 64, height: 64, fontSize: 24 }}>
-            {getInitials(user?.name)}
+            {getInitial(user?.name)}
           </Avatar>
           <Box>
             <Typography variant="h6" sx={{ fontWeight: "bold" }}>

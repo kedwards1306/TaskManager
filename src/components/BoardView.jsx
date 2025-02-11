@@ -1,24 +1,25 @@
 import React from "react";
-import TaskCard from "./Taskcard";
-import { Grid2, Box } from "@mui/material";
+import TaskCard from "./TaskCard";
+import { Box, Typography } from "@mui/material";
 
 const BoardView = ({ tasks }) => {
+  console.log("BoardView Rendered"); // This confirms if BoardView is even rendering
+  console.log("Tasks received in BoardView:", tasks); // Log tasks here
+
   return (
-    <Box sx={{ width: "100%", py: 2 }}>
-      <Grid2 container spacing={2} sx={{ justifyContent: "center" }}>
-        {tasks.map((task, index) => (
-          <Grid2
-            item
-            xs={12} // Default 1 column
-            sm={6}  // 2 columns on small screens
-            md={4}  // 3 columns on medium screens
-            key={index}
-          >
+    <><Box sx={{ width: "100%", py: 2, display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 2 }}>
+      {tasks && tasks.length > 0 ? (
+        tasks.map((task, index) => (
+          <Box key={index} sx={{ width: '100%', sm: '48%', md: '30%', padding: 1 }}>
             <TaskCard task={task} />
-          </Grid2>
-        ))}
-      </Grid2>
-    </Box>
+
+          </Box>
+
+        ))
+      ) : (
+        <Typography>No tasks available</Typography>
+      )}
+    </Box></>
   );
 };
 

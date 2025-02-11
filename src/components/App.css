@@ -203,6 +203,13 @@ color:indigo;
   background-color: #fff;
   animation: pulse 1.5s infinite ease-in-out;
 }
+.task-card {
+  width: "100%";
+  background-color: white;
+  box-shadow: 2px 2px 5px;
+  padding: 16px;
+  border-radius: 8px;
+}
 
 .dots:last-child {
   margin-right: 0;

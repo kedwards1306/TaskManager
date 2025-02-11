@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   MdAttachFile,
   MdKeyboardArrowDown,
@@ -9,7 +9,10 @@ import { BiMessageAltDetail } from "react-icons/bi";
 import { FaList } from "react-icons/fa";
 import { IoMdAdd } from "react-icons/io";
 import {
-  Box,
+  Card,
+  CardHeader,
+  CardContent,
+  CardActions,
   Typography,
   Button,
   Divider,
@@ -17,9 +20,10 @@ import {
   IconButton,
 } from "@mui/material";
 import TaskDialog from "./Tasks/TaskDialog";
-import AddSubTask from "./Tasks/AddSubTask";
 import UserInfo from "./UserInfo";
 import { BGS, PRIORITYSTYLES, TASK_TYPE, formatDate } from "../utils";
+import { AuthContext } from "../auth/Authentication";
+import AddSubTask from "./Tasks/AddSubTask";
 
 const ICONS = {
   high: <MdKeyboardDoubleArrowUp />,
@@ -28,80 +32,70 @@ const ICONS = {
 };
 
 const TaskCard = ({ task }) => {
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
 
   return (
-    <>
-      <Box
-        sx={{
-          width: "100%",
-          backgroundColor: "white",
-          boxShadow: 2,
-          padding: 2,
-          borderRadius: 2,
-        }}
-      >
-        {/* Priority and Task Dialog */}
-        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Box
+    <Card sx={{ boxShadow: 3, borderRadius: 2 }}>
+      {/* Priority & Task Dialog */}
+      <CardHeader
+        action={user?.isAdmin && <TaskDialog task={task} />}
+        title={
+          <Typography
+            variant="body2"
             sx={{
               display: "flex",
               alignItems: "center",
               gap: 1,
-              fontSize: "0.875rem",
               fontWeight: "bold",
-              color: PRIORITYSTYLES[task?.priority] || "black",
+              color: PRIORITYSTYLES[task?.priority],
             }}
           >
             <span style={{ fontSize: "1.2rem" }}>{ICONS[task?.priority]}</span>
-            <Typography variant="body2" sx={{ textTransform: "uppercase" }}>
-              {task?.priority} Priority
-            </Typography>
-          </Box>
+            {task?.priority} Priority
+          </Typography>
+        }
+      />
 
-          {user?.isAdmin && <TaskDialog task={task} />}
-        </Box>
-
+      <CardContent>
         {/* Task Title and Date */}
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1, marginY: 1 }}>
-          <Box
-            sx={{
+        <Typography variant="h6" sx={{ display: "flex", alignItems: "center", gap: 1, color: "black" }}>
+          <span
+            style={{
               width: 16,
               height: 16,
               borderRadius: "50%",
-              backgroundColor: TASK_TYPE[task.stage] || "gray",
+              backgroundColor: TASK_TYPE[task.stage],
+              display: "inline-block",
             }}
           />
-          <Typography variant="h6" sx={{ flexGrow: 1, color: "black" }}>
-            {task?.title}
-          </Typography>
-        </Box>
+          {task?.title}
+        </Typography>
         <Typography variant="body2" color="textSecondary">
           {formatDate(new Date(task?.date))}
         </Typography>
 
         <Divider sx={{ my: 2 }} />
 
-        {/* Task Info (Comments, Attachments, Subtasks) */}
-        <Box sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}>
-          <Box sx={{ display: "flex", gap: 2, color: "gray" }}>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+        {/* Task Info: Comments, Attachments, Subtaskss */}
+        <div style={{ display: "flex", justifyContent: "space-between", color: "black" }}>
+          <div style={{ display: "flex", gap: 8 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
               <BiMessageAltDetail />
               <Typography variant="body2">{task?.activities?.length}</Typography>
-            </Box>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
               <MdAttachFile />
               <Typography variant="body2">{task?.assets?.length}</Typography>
-            </Box>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
               <FaList />
-              <Typography variant="body2">0/{task?.subTasks?.length}</Typography>
-            </Box>
-          </Box>
+              <Typography variant="body2">0/{task?.Subtasks?.length}</Typography>
+            </div>
+          </div>
 
           {/* Team Avatars */}
-          <Box sx={{ display: "flex", flexDirection: "row-reverse" }}>
+          <div style={{ display: "flex", flexDirection: "row-reverse" }}>
             {task?.team?.map((m, index) => (
               <Avatar
                 key={index}
@@ -117,19 +111,18 @@ const TaskCard = ({ task }) => {
                 <UserInfo user={m} />
               </Avatar>
             ))}
-          </Box>
-        </Box>
+          </div>
+        </div>
 
         {/* Sub Tasks */}
-        {task?.subTasks?.length > 0 ? (
-          <Box sx={{ py: 2, borderTop: "1px solid #E0E0E0" }}>
+        {task?.Subtasks?.length > 0 ? (
+          <div style={{ paddingTop: 16, borderTop: "1px solid #E0E0E0" }}>
             <Typography variant="subtitle1" sx={{ color: "black" }}>
-              {task?.subTasks[0].title}
+              {task?.Subtasks[0].title}
             </Typography>
-
-            <Box sx={{ display: "flex", gap: 2, paddingY: 1 }}>
+            <div style={{ display: "flex", gap: 16, paddingY: 8 }}>
               <Typography variant="body2" color="textSecondary">
-                {formatDate(new Date(task?.subTasks[0]?.date))}
+                {formatDate(new Date(task?.Subtasks[0]?.date))}
               </Typography>
               <Typography
                 variant="body2"
@@ -141,44 +134,44 @@ const TaskCard = ({ task }) => {
                   fontWeight: "bold",
                 }}
               >
-                {task?.subTasks[0].tag}
+                {task?.Subtasks[0].tag}
               </Typography>
-            </Box>
-          </Box>
+            </div>
+          </div>
         ) : (
-          <Box sx={{ py: 2, borderTop: "1px solid #E0E0E0" }}>
+          <div style={{ paddingTop: 16, borderTop: "1px solid #E0E0E0" }}>
             <Typography variant="body2" color="textSecondary">
               No Sub Task
             </Typography>
-          </Box>
+          </div>
         )}
+      </CardContent>
 
-        {/* Add Subtask Button */}
-        <Box sx={{ pb: 2 }}>
-          <Button
-            onClick={() => setOpen(true)}
-            disabled={!user.isAdmin}
-            sx={{
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              gap: 1,
-              color: user.isAdmin ? "black" : "gray",
-              fontWeight: "bold",
-              textTransform: "none",
-            }}
-          >
-            <IconButton size="small" sx={{ color: "black" }}>
-              <IoMdAdd />
-            </IconButton>
-            ADD SUBTASK
-          </Button>
-        </Box>
-      </Box>
+      {/* Add Subtasks Button */}
+      <CardActions>
+        <Button
+          onClick={() => setOpen(true)}
+          disabled={!user.isAdmin}
+          sx={{
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            gap: 1,
+            color: user.isAdmin ? "black" : "gray",
+            fontWeight: "bold",
+            textTransform: "none",
+          }}
+        >
+          <IconButton size="small" sx={{ color: "black" }}>
+            <IoMdAdd />
+          </IconButton>
+          ADD SUBTASK
+        </Button>
 
       <AddSubTask open={open} setOpen={setOpen} id={task._id} />
-    </>
+      </CardActions>
+    </Card>
   );
-};
+ };
 
 export default TaskCard;

@@ -44,7 +44,7 @@ const UserAvatar = () => {
                     }}
           >
                       <span className="">
-                          {getInitial(user?.username)}
+                      {getInitial(user.username)}
 
                       </span>
                   </Button>

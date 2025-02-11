@@ -8,14 +8,14 @@ export const summary = {
 
     last8Tasks: [
       {
-        id: "1",
+        _id: "1",
         title: "Finish React Project",
         date: "2025-01-28",
         priority: "high",
         stage: "todo",
         isTrashed: false,
         activities: ["Reviewed API endpoints", "Updated component structure"],
-        subTask: [
+        subTasks: [
           { title: "Implement Authentication", date: "2025-01-29", tag: "development" },
           { title: "Set up Redux", date: "2025-01-30", tag: "development" },
         ],
@@ -25,87 +25,112 @@ export const summary = {
         ],
       },
       {
-        id: "2",
+        _id: "2",
         title: "Prepare Presentation Slides",
         date: "2025-01-27",
         priority: "medium",
         stage: "in-progress",
         isTrashed: false,
         activities: ["Gathered data", "Designed 4 slides"],
-        subTask: [{ title: "Add charts to slides", date: "2025-01-28", tag: "design" }],
+        subTasks: [{ title: "Add charts to slides", date: "2025-01-28", tag: "design" }],
         team: [
           { name: "Charlie Brown", role: "Designer" },
           { name: "Dana White", role: "Data Analyst" },
         ],
       },
       {
-        id: "3",
+        _id: "3",
         title: "Submit Expense Report",
         date: "2025-01-26",
         priority: "low",
         stage: "completed",
         isTrashed: false,
         activities: ["Collected receipts", "Filled out form"],
-        subTask: [],
+        subTasks: [],
         team: [{ name: "Evan Lee", role: "Finance" }],
       },
     ],
 
-    users: [
+  users: [
+    {
+      _id: "U1",
+      name: "Test User",
+      role: "Project Manager",
+      isActive: true,
+      isAdmin: true,
+      tasks:[],
+      createdAt: "2024-12-01",
+    },
       {
-        id: "U1",
+        _id: "U1",
         name: "Alice Johnson",
         role: "Frontend Developer",
         isActive: true,
+        tasks:[],
+        isAdmin: false,
         createdAt: "2024-12-15",
       },
       {
-        id: "U2",
+        _id: "U2",
         name: "Bob Smith",
         role: "Backend Developer",
+        isAdmin: false,
         isActive: true,
+        tasks:[],
         createdAt: "2024-11-10",
       },
       {
-        id: "U3",
+        _id: "U3",
         name: "Charlie Brown",
         role: "Designer",
+        isAdmin: false,
         isActive: false,
+        tasks:[],
         createdAt: "2024-10-05",
       },
       {
-        id: "U4",
+        _id: "U4",
         name: "Dana White",
         role: "Data Analyst",
+        isAdmin: false,
         isActive: true,
+        tasks:[],
         createdAt: "2024-09-20",
       },
       {
-        id: "U5",
+        _id: "U5",
         name: "Evan Lee",
         role: "Finance Manager",
+        isAdmin: false,
         isActive: false,
+        tasks:[],
         createdAt: "2024-08-18",
       },
       {
-        id: "U6",
+        _id: "U6",
         name: "Fiona Green",
         role: "Content Writer",
+        isAdmin: false,
         isActive: true,
+        tasks:[],
         createdAt: "2024-07-12",
       },
       {
-        id: "U7",
+        _id: "U7",
         name: "George Adams",
         role: "Editor",
+        isAdmin: false,
         isActive: true,
+        tasks:[],
         createdAt: "2024-06-30",
       },
       {
-        id: "U8",
+        _id: "U8",
         name: "Henry Black",
         role: "Senior Developer",
+        isAdmin: false,
         isActive: true,
+        tasks:[],
         createdAt: "2024-05-25",
       },
     ],
@@ -113,7 +138,7 @@ export const summary = {
 };
 export const tasks = [
   {
-      id: "1",
+      _id: "1",
       title: "Finish React Project",
       date: "2025-01-28",
       priority: "high",
@@ -124,31 +149,31 @@ export const tasks = [
       ],
       team: [
           {
-              id: "U1",
+              _id: "U1",
               name: "Alice Johnson",
               role: "Frontend Developer",
               email: "alice.johnson@example.com"
           },
           {
-              id: "U2",
+              _id: "U2",
               name: "Bob Smith",
               role: "Backend Developer",
               email: "bob.smith@example.com"
           }
       ],
       isTrashed: false,
-      subTask: [
+      subTasks: [
           {
               title: "Implement Authentication",
               date: "2025-01-29",
               tag: "development",
-              id: "1.1"
+              _id: "1.1"
           },
           {
               title: "Set up Redux",
               date: "2025-01-30",
               tag: "development",
-              id: "1.2"
+              _id: "1.2"
           }
       ],
       comments: [],
@@ -156,36 +181,36 @@ export const tasks = [
       updatedAt: "2025-01-28"
   },
   {
-      id: "2",
+      _id: "2",
       title: "Prepare Presentation Slides",
       date: "2025-01-27",
       priority: "medium",
       stage: "in-progress",
       activities: [
           "Gathered data",
-          "Designed 4 slides"
+          "Designed 4 sl_ides"
       ],
       team: [
           {
-              id: "U3",
+              _id: "U3",
               name: "Charlie Brown",
               role: "Designer",
               email: "charlie.brown@example.com"
           },
           {
-              id: "U4",
+              _id: "U4",
               name: "Dana White",
               role: "Data Analyst",
               email: "dana.white@example.com"
           }
       ],
       isTrashed: false,
-      subTask: [
+      subTasks: [
           {
               title: "Add charts to slides",
               date: "2025-01-28",
               tag: "design",
-              id: "2.1"
+              _id: "2.1"
           }
       ],
       comments: [],
@@ -193,7 +218,7 @@ export const tasks = [
       updatedAt: "2025-01-27"
   },
   {
-      id: "3",
+      _id: "3",
       title: "Submit Expense Report",
       date: "2025-01-26",
       priority: "low",
@@ -204,14 +229,14 @@ export const tasks = [
       ],
       team: [
           {
-              id: "U5",
+              _id: "U5",
               name: "Evan Lee",
               role: "Finance Manager",
               email: "evan.lee@example.com"
           }
       ],
       isTrashed: false,
-      subTask: [],
+      subTasks: [],
       comments: [],
       createdAt: "2024-11-15",
       updatedAt: "2025-01-26"
