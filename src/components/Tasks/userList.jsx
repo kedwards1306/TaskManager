@@ -45,7 +45,7 @@ const UserList = ({ setTeam, team }) => {
               <Chip
                 key={user._id}
                 label={user.name}
-                avatar={<Avatar sx={{ width: 24, height: 24 }}>{getInitials(user.name)}</Avatar>}
+                avatar={<Avatar sx={{ width: 24, height: 24 }}>{getInitial(user.name)}</Avatar>}
               />
             ))}
           </Box>

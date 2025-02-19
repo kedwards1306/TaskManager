@@ -130,7 +130,7 @@ const TaskTable = ({ tasks }) => {
                       <Avatar
                         key={member._id}
                         sx={{
-                          bgcolor: BGS[index % BGS.length],
+                          bgcolor: BGS[index % BGS?.length],
                           width: 32,
                           height: 32,
                           fontSize: "small",

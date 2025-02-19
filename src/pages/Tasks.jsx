@@ -55,9 +55,11 @@ const Tasks = () => {
               paddingBottom: "0.5rem",
               paddingLeft: "1rem", // Optional: Add spacing
               paddingRight: "1rem",
-            }}
+              }}
+              onClick={() => setOpen(true)}
           >
             <IoMdAdd style={{ fontSize: "small" }} /> Create Task
+            
           </Button>
         )}
       </div>
