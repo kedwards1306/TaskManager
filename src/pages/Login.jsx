@@ -14,7 +14,7 @@ const Login = () => {
 
     const submitHandler = async (data) => {
         // Simulating login - replace with actual API call
-        login({ username: data.username, email: data.email, isAdmin: true }); // Example user data
+        login({ name: data.name, email: data.email, isAdmin: true }); // Example user data
         navigate("/dashboard");
     };
 
@@ -47,10 +47,10 @@ const Login = () => {
                         <CardContent>
                             <form onSubmit={handleSubmit(submitHandler)}>
                                 <TextField
-                                    label="Username"
-                                    {...register("username", { required: "Username is required" })}
-                                    error={!!errors.username}
-                                    helperText={errors.username ? errors.username.message : ''}
+                                    label="Name"
+                                    {...register("name", { required: "Name is required" })}
+                                    error={!!errors.name}
+                                    helperText={errors.name ? errors.name.message : ''}
                                     fullWidth
                                     margin="normal"
                                 />

@@ -24,10 +24,28 @@ export function dateFormatter(dateString) {
 
 
 
-export function getInitial(fullName) {
-    const names = fullName.split(" ");
-    const initials = names.splice(0, 2).map((name) => name[0].toUpperCase());
-    const initialsString = initials.join("");
-    return initialsString;
+  export function getInitial(fullName = "") {
+    if (!fullName) return "?"; // Handle empty or undefined fullName
 
+    const names = fullName.trim().split(" ");
+    const initials = names.slice(0, 2).map((name) => name[0].toUpperCase());
+    return initials.join("");
+}
+
+export const TASK_TYPE = {
+  todo: "blue",
+  "in progress": "yellow",
+  completed: "green",
+};
+export const PRIORITYSTYLES = {
+  high: "red",
+  medium: "orange",
+  low: "green",
+}
+
+export const BGS = {
+  blue: "#3498db",
+  yellow: "#f1c40f",
+  green: "#2ecc71",
+  red: "#e74c3c",
 }

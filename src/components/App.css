@@ -33,12 +33,11 @@
 /* Navbar */
 .navbar-left {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  width: 100%;
   padding: 10px 16px;
-  background-color: #ffffff;
+  background-color: #ffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: sticky;
   top: 0;
   z-index: 900;
 }
@@ -46,7 +45,7 @@
 .navbar-content {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 4px;
 }
 
 .navbar-search {
@@ -185,4 +184,44 @@ color:indigo;
   .sidebar.open {
     transform: translateX(0); /* Show on toggle */
   }
+}
+/* Dots */
+.dots-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.dots{
+  height: 12px;
+  width: 12px;
+  margin-right: 10px;
+  border-radius: 10px;
+  background-color: #fff;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+.task-card {
+  width: "100%";
+  background-color: white;
+  box-shadow: 2px 2px 5px;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.dots:last-child {
+  margin-right: 0;
+}
+
+.dos:nth-child(1) {
+  animation-delay: -0.3s;
+}
+
+.dots:nth-child(2) {
+  animation-delay: -0.1s;
+}
+
+.dots:nth-child(3) {
+  animation-delay: 0.1s;
 }
