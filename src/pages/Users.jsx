@@ -86,8 +86,8 @@ const Users = () => {
                   <Box display="flex" alignItems="center" gap={1.5}>
                     <Box
                       sx={{
-                        width: 36,
-                        height: 36,
+                        width: 24,
+                        height: 24,
                         borderRadius: "50%",
                         backgroundColor: "#2563eb",
                         color: "white",

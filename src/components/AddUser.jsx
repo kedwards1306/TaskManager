@@ -43,7 +43,6 @@ const AddUser = ({ open, setOpen, userData }) => {
             error={!!errors.name}
             helperText={errors.name?.message}
           />
-
           <TextField
             label="Title"
             fullWidth
@@ -52,7 +51,6 @@ const AddUser = ({ open, setOpen, userData }) => {
             error={!!errors.title}
             helperText={errors.title?.message}
           />
-
           <TextField
             label="Email Address"
             type="email"
@@ -62,7 +60,6 @@ const AddUser = ({ open, setOpen, userData }) => {
             error={!!errors.email}
             helperText={errors.email?.message}
           />
-
           <TextField
             label="Role"
             fullWidth
@@ -85,7 +82,7 @@ const AddUser = ({ open, setOpen, userData }) => {
           color="primary"
           disabled={isLoading || isUpdating}
           onClick={handleSubmit(handleOnSubmit)}
-          startIcon={isLoading || isUpdating ? <CircularProgress size={16} /> : null}
+          startIcon={isLoading || isUpdating ? <CircularProgress size={15} /> : null}
         >
           Submit
         </Button>
