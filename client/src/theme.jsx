@@ -11,7 +11,7 @@ export default createTheme({
             light: '#63a4ff',
             main: '#1976df',
             dark: '#004ba0',
-            constrastText: '#fff',
+            contrastText: '#fff',
 
         },
         secondary: {

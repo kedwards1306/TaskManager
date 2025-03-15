@@ -27,8 +27,6 @@ const stats = [
     total: totals["completed"] || 0,
     icon: <MdAdminPanelSettings />,
     bg: "yellow",
-
-
   },
   {
     id: "3",
@@ -36,7 +34,6 @@ const stats = [
     total: totals["in progress"] || 0,
     icon: <LuClipboardPen />,
     bg: "green",
-
   },
   {
     id: "4",
@@ -45,7 +42,6 @@ const stats = [
     icon: <FaArrowsToDot />,
     bg: "orange",
   }
-
 
 ]
 const Dashboard = () => {

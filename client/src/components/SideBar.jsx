@@ -11,9 +11,9 @@ const linkedData = [
   { label: "Dashboard", link: "dashboard", icon: <MdDashboard /> },
   { label: "Tasks", link: "tasks", icon: <BsListTask /> },
   { label: "Add Task", link: "addTask", icon: <MdAddTask /> },
-  { label: "To-Do", link: "to-do", icon: <MdPendingActions /> },
+  { label: "To-Do", link: "todo", icon: <MdPendingActions /> },
   { label: "Completed", link: "completed", icon: <MdOutlineTaskAlt /> },
-  { label: "In Progress", link: "inProgress", icon: <MdPendingActions /> },
+  { label: "In Progress", link: "in-progess", icon: <MdPendingActions /> },
   { label: "Team", link: "team", icon: <HiUsers /> },
   { label: "Trash", link: "trash", icon: <MdDelete /> },
 ];

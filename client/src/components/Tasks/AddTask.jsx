@@ -148,7 +148,7 @@ const AddTask = ({ open, setOpen }) => {
             </Button>
           )}
 
-          <Button onClick={() => setOpen(false)} variant="outlined">
+          <Button onClick={() => setOpen(false)} variant="outlined" color="error">
             Cancel
           </Button>
         </DialogActions>
