@@ -35,7 +35,7 @@ const TaskDialog = ({ task }) => {
       label: "Open Task",
       icon: <AiTwotoneFolderOpen size={20} />,
       onClick: () => {
-        navigate(`/task/${task._id}`);
+        navigate(`/tasks/${task._id}`);
         handleMenuClose();
       },
     },

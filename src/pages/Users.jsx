@@ -42,6 +42,13 @@ const Users = () => {
     setSelected(el);
     setOpen(true);
   };
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    fontWeight: 600,
+    padding: "4px 8px",  // Reduce padding
+    height: 30,          // Reduce height
+    lineHeight: 1.2,     // Reduce text spacing
+    minHeight: "unset",  // Prevent default MUI height
+  }));
 
   return (
     <Box sx={{ width: "100%", p: 2 }}>
@@ -69,24 +76,25 @@ const Users = () => {
       {/* Table */}
       <Paper sx={{ overflow: "hidden", p: 2, borderRadius: 2 }}>
         <Table>
-          <TableHead>
-            <TableRow>
-              <StyledTableCell>Full Name</StyledTableCell>
-              <StyledTableCell>Title</StyledTableCell>
-              <StyledTableCell>Email</StyledTableCell>
-              <StyledTableCell>Role</StyledTableCell>
-              <StyledTableCell>Active</StyledTableCell>
-              <StyledTableCell align="right">Actions</StyledTableCell>
+        <TableHead>
+            <TableRow sx={{ height: 24 }}> {/* Adjust the row height */}
+              <StyledTableCell sx={{ padding: "4px 8px", height: 30 }}>Full Name</StyledTableCell>
+              <StyledTableCell sx={{ padding: "4px 8px", height: 30 }}>Title</StyledTableCell>
+              <StyledTableCell sx={{ padding: "4px 8px", height: 30 }}>Email</StyledTableCell>
+              <StyledTableCell sx={{ padding: "4px 8px", height: 30 }}>Role</StyledTableCell>
+              <StyledTableCell sx={{ padding: "4px 8px", height: 30 }}>Active</StyledTableCell>
+              <StyledTableCell sx={{ padding: "4px 8px", height: 30 }} align="right">Actions</StyledTableCell>
             </TableRow>
           </TableHead>
+          
           <TableBody>
             {summary.users?.map((user, index) => (
-              <TableRow key={index} hover>
+              <TableRow sx={{height: 12}} key={index} hover >
                 <TableCell>
                   <Box display="flex" alignItems="center" gap={1.5}>
                     <Box
                       sx={{
-                        width: 24,
+                        width: 30,
                         height: 24,
                         borderRadius: "50%",
                         backgroundColor: "#2563eb",

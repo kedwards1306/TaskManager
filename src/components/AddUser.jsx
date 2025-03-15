@@ -1,92 +1,93 @@
-import React, {useContext} from "react";
-import { useForm } from "react-hook-form";
+import React, { useEffect } from "react";
 import {
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
-  Button,
   TextField,
-  CircularProgress,
+  Button,
 } from "@mui/material";
-import { AuthContext } from "../auth/Authentication";
+import { useForm } from "react-hook-form";
 
 const AddUser = ({ open, setOpen, userData }) => {
-  const defaultValues = userData ?? {};
-  const { user } = useContext(AuthContext);
-  const isLoading = false,
-    isUpdating = false;
-
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm({ defaultValues });
+  } = useForm();
 
-  const handleOnSubmit = (data) => {
-    console.log("Form Submitted:", data);
+  useEffect(() => {
+    // Reset form when userData changes (for editing)
+    if (userData) {
+      reset({
+        name: userData.name || "",
+        email: userData.email || "",
+        role: userData.role || "",
+      });
+    } else {
+      reset({ name: "", email: "", role: "" });
+    }
+  }, [userData, reset]);
+
+  const onSubmit = (data) => {
+    if (userData) {
+      console.log("Updating User:", data);
+      // Call your API function to update user
+    } else {
+      console.log("Adding New User:", data);
+      // Call your API function to create user
+    }
+    setOpen(false);
   };
 
   return (
-    <Dialog open={open} onClose={() => setOpen(false)} maxWidth="sm" fullWidth>
-      <DialogTitle sx={{ fontWeight: "bold" }}>
-        {userData ? "UPDATE PROFILE" : "ADD NEW USER"}
-      </DialogTitle>
-
-      <DialogContent>
-        <form onSubmit={handleSubmit(handleOnSubmit)} noValidate>
+    <Dialog open={open} onClose={() => setOpen(false)} fullWidth maxWidth="sm">
+      <DialogTitle>{userData ? "Edit User" : "Add New User"}</DialogTitle>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <DialogContent sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
           <TextField
             label="Full Name"
             fullWidth
-            margin="normal"
-            {...register("name", { required: "Full name is required!" })}
+            {...register("name", { required: "Name is required!" })}
             error={!!errors.name}
             helperText={errors.name?.message}
           />
-          <TextField
+              <TextField
             label="Title"
             fullWidth
-            margin="normal"
             {...register("title", { required: "Title is required!" })}
             error={!!errors.title}
             helperText={errors.title?.message}
           />
+
           <TextField
-            label="Email Address"
+            label="Email"
             type="email"
             fullWidth
-            margin="normal"
-            {...register("email", { required: "Email Address is required!" })}
+            {...register("email", { required: "Email is required!" })}
             error={!!errors.email}
             helperText={errors.email?.message}
           />
+
           <TextField
             label="Role"
             fullWidth
-            margin="normal"
-            {...register("role", { required: "User role is required!" })}
+            {...register("role", { required: "Role is required!" })}
             error={!!errors.role}
             helperText={errors.role?.message}
           />
-        </form>
-      </DialogContent>
+        </DialogContent>
 
-      <DialogActions sx={{ padding: "16px" }}>
-        <Button onClick={() => setOpen(false)} color="secondary">
-          Cancel
-        </Button>
-
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          disabled={isLoading || isUpdating}
-          onClick={handleSubmit(handleOnSubmit)}
-          startIcon={isLoading || isUpdating ? <CircularProgress size={15} /> : null}
-        >
-          Submit
-        </Button>
-      </DialogActions>
+        <DialogActions>
+          <Button onClick={() => setOpen(false)} color="secondary">
+            Cancel
+          </Button>
+          <Button type="submit" variant="contained" color="primary">
+            {userData ? "Update" : "Add"}
+          </Button>
+        </DialogActions>
+      </form>
     </Dialog>
   );
 };
