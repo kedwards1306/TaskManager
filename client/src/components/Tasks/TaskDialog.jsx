@@ -7,8 +7,8 @@ import { HiDuplicate } from "react-icons/hi";
 import { MdAdd, MdOutlineEdit } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import AddTask from "./AddTask.jsx";
-import AddSubTask from "./AddSubTask";
-import ConfirmationDialog from "../Dialogs";
+import AddSubTask from "./AddSubTask.jsx";
+import ConfirmationDialog from "../Dialogs.jsx";
 
 const TaskDialog = ({ task }) => {
   const [anchorEl, setAnchorEl] = useState(null);
