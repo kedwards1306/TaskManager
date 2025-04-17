@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import mongoose, {Schema} from "mongoose";
 
-const noticeSchema = new mongoose.Schema({
+const noticeSchema = new Schema({
     team: [{ type: Schema.Types.ObjectId, ref: "User" }],
     
 });
