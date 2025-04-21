@@ -1,6 +1,7 @@
 import { response } from "express";
 import User from "../models/user.js";
 import { createJwt } from "../utils/index.js";
+import Notice from "../models/notification.js";
 
 
 export const registerUser = async (req, res) => {
@@ -104,7 +105,7 @@ try {
     try {
       const { userId } = req.user;
   
-      const notice = await Notice.find({
+      const notice = await Notice.findOne({
         team: userId,
         isRead: { $nin: [userId] },
       }).populate("task", "title");
