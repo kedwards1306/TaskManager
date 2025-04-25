@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import { BiImages } from "react-icons/bi";
 import { useForm } from "react-hook-form";
-import UserList from "./userList";
+import UserList from "./userList.jsx";
 
 const LISTS = ["TODO", "IN PROGRESS", "COMPLETED"];
 const PRIORITIES = ["HIGH", "MEDIUM", "NORMAL", "LOW"];

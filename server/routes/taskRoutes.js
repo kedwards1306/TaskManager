@@ -7,19 +7,21 @@ import {
     createSubTask,
     updateTask,
     trashTask,
-    deleterestoreTask
+    deleterestoreTask,
+    dashboardStatistics,
+    getTask
 } from "../controller/taskController.js";
 import { isAdminRoute, protectRoute } from '../middleware/authMiddleware.js';
 
 
 const router = express.Router();
 router.post("/create", protectRoute, isAdminRoute, createTask);
-// router.post("/duplicate:id", protectRoute, isAdminRoute, duplicateTask);
-// router.post("/activity:id", protectRoute, isAdminRoute, postTaskActivity);
+ router.post("/duplicate:id", protectRoute, isAdminRoute, duplicateTask);
+router.post("/activity:id", protectRoute, isAdminRoute, postTaskActivity);
 
-
-// router.get("/", protectRoute, getTasks);
-// router.get("/:id", protectRoute, getTasks);
+router.get("/dashboard", protectRoute, dashboardStatistics);
+router.get("/", protectRoute, getTasks);
+router.get("/:id", protectRoute, getTask);
 
 // router.put("/create-subtask/:id", protectRoute, isAdminRoute, createSubTask);
 // router.put("/update/:id", protectRoute, isAdminRoute, updateTask);
