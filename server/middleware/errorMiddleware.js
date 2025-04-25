@@ -5,7 +5,8 @@ const RoutesNotFound = (req, res, next) => {
 };
 
 const errorHandler = (err, res, req, next) => {
-    const statusCode = res.statusCode == 200 || 500;
+
+    let statusCode = res.statusCode == 200 || 500;
     let message = err.message;
 
     if (err.name === "CastError" && err.kind === "ObjectId") {
