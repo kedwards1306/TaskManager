@@ -3,11 +3,11 @@ import User from "../models/user.js";
 
 const protectRoute = async (req, res, next) => {
     try {
-        let token = req.cookie.token;
+        let token = req.cookies?.token;
         if (token) {
             const decodeToken = jwt.verify(token, process.env.JWT_KEY);
 
-            const resp = await User.findById(decodeToken.userId).select("IsAdmin email");
+            const resp = await User.findById(decodeToken.userId).select("isAdmin email");
             req.user = {
                 email: resp.email,
                 isAdmin: resp.isAdmin,
@@ -15,12 +15,18 @@ const protectRoute = async (req, res, next) => {
             };
             next();
         }
-
-    } catch (error) {
-        console.log(error);
-        return res.status(401).json({ status: false, message: "Not authorize. Please log in again." });
-    }
-};
+        else {
+            return res
+              .status(401)
+              .json({ status: false, message: "Not authorized. Try login again." });
+          }
+        } catch (error) {
+          console.error(error);
+          return res
+            .status(401)
+            .json({ status: false, message: "Not authorized. Try login again." });
+        }
+      };
 const isAdminRoute = (req, res, next) => {
     if (req.user && req.user.isAdmin) {
         next();

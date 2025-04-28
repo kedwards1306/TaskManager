@@ -4,7 +4,7 @@ const RoutesNotFound = (req, res, next) => {
     next(error);
 };
 
-const errorHandler = (err, res, req, next) => {
+const errorHandler = (err, req, res, next) => {
 
     let statusCode = res.statusCode == 200 || 500;
     let message = err.message;
@@ -13,7 +13,6 @@ const errorHandler = (err, res, req, next) => {
       statusCode = 404;
       message = "Resource not found";
     }
-  
     res.status(statusCode).json({
       message: message,
       stack: process.env.NODE_ENV === "production" ? null : err.stack,
